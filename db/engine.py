@@ -1,20 +1,13 @@
-from sqlalchemy import create_engine, text
+from sqlalchemy.ext.asyncio import create_async_engine,async_sessionmaker
 from sqlalchemy.exc import OperationalError
 
 from core.config import db_config
 
-engine = create_engine(db_config.DB)
+engine = create_async_engine(db_config.DB)
 
+new_session_factory = async_sessionmaker(engine)
 
-def check_db():
-    """Функция проверяет подключение к бд"""
-    try:
-        with engine.connect() as connection:
-            result = connection.execute(text("SELECT 1"))
-            print("Подключение успешно:", result.scalar())
-    except OperationalError as e:
-        print("Ошибка подключения к БД:\n", e)
-    except Exception as e:
-        print("Произошла ошибка:", e)
+async def get_session():
+    async with new_session_factory() as session:
+        yield session
 
-check_db()
