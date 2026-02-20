@@ -1,0 +1,38 @@
+2026-02-20 10:58:37,160 - general - INFO - Приложение  включено
+2026-02-20 10:59:33,270 - general - INFO - Приложение отключено
+2026-02-20 10:59:35,533 - general - INFO - Приложение  включено
+2026-02-20 10:59:46,615 - general - INFO - Приложение отключено
+2026-02-20 10:59:48,778 - general - INFO - Приложение  включено
+2026-02-20 11:02:07,497 - general - INFO - Приложение отключено
+2026-02-20 11:02:10,087 - general - INFO - Приложение  включено
+2026-02-20 11:02:10,234 - general - INFO - Database connected successfully
+2026-02-20 11:02:34,524 - general - INFO - Приложение отключено
+2026-02-20 11:02:36,908 - general - INFO - Приложение  включено
+2026-02-20 11:02:37,228 - general - INFO - Database connected successfully
+2026-02-20 11:03:43,719 - general - INFO - Приложение отключено
+2026-02-20 11:03:46,578 - general - INFO - Приложение  включено
+2026-02-20 11:03:46,708 - general - INFO - Database connected successfully
+2026-02-20 11:04:04,566 - general - INFO - Приложение отключено
+2026-02-20 11:04:06,868 - general - INFO - Приложение  включено
+2026-02-20 11:04:07,005 - general - INFO - Database connected successfully
+2026-02-20 11:04:22,623 - general - INFO - Приложение отключено
+2026-02-20 11:04:24,820 - general - INFO - Приложение  включено
+2026-02-20 11:04:25,087 - general - INFO - Database connected successfully
+2026-02-20 11:04:29,683 - general - INFO - Приложение отключено
+2026-02-20 11:04:33,718 - general - INFO - Приложение  включено
+2026-02-20 11:04:33,846 - general - INFO - Database connected successfully
+2026-02-20 11:04:48,290 - general - DEBUG - Endpoint <starlette.middleware.base._CachedRequest object at 0x000002897BCB5CD0> has started working
+2026-02-20 11:04:48,693 - general - DEBUG - Endpoint <starlette.middleware.base._CachedRequest object at 0x000002897BCE0C50> has started working
+2026-02-20 11:04:51,281 - general - DEBUG - Endpoint <starlette.middleware.base._CachedRequest object at 0x000002897BCE3BF0> has started working
+2026-02-20 11:05:09,377 - general - INFO - Приложение отключено
+2026-02-20 11:05:11,704 - general - INFO - Приложение  включено
+2026-02-20 11:05:11,835 - general - INFO - Database connected successfully
+2026-02-20 11:05:11,847 - general - DEBUG - Endpoint <function BaseHTTPMiddleware.__call__.<locals>.call_next at 0x000001C48E828180> has started working
+2026-02-20 11:07:06,069 - general - INFO - Приложение отключено
+2026-02-20 11:07:21,999 - general - INFO - Приложение  включено
+2026-02-20 11:07:22,137 - general - INFO - Database connected successfully
+2026-02-20 11:07:40,522 - general - INFO - Приложение отключено
+2026-02-20 11:07:42,764 - general - INFO - Приложение  включено
+2026-02-20 11:07:42,899 - general - INFO - Database connected successfully
+2026-02-20 11:07:49,178 - general - INFO - Endpoint /general/recommendations finished in 0.0394 sec
+2026-02-20 11:09:26,390 - general - INFO - Приложение отключено

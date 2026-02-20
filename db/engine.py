@@ -4,6 +4,7 @@ from sqlalchemy import text
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
 
 from core.config import db_config
+from core.logger import logger
 
 engine = create_async_engine(db_config.DB)
 
@@ -19,7 +20,7 @@ async def check_db():
     try:
         async with engine.connect() as conn:
             await conn.execute(text("SELECT 1"))
-            print("Database connected")
+            logger.info("Database connected successfully")
     except Exception as e:
-        print("Database Error:", e)
+        logger.error(f"Database error: {e}")
 
