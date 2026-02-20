@@ -5,7 +5,7 @@ from logging.handlers import TimedRotatingFileHandler
 logger = logging.getLogger('general')
 logger.setLevel(logging.DEBUG)
 
-handler = TimedRotatingFileHandler(filename='./logs/log.txt', when="midnight",interval=1, backupCount=1, encoding='utf-8')
+handler = TimedRotatingFileHandler(filename='./logs/log.log', when="midnight",interval=1, backupCount=1, encoding='utf-8')
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 handler.setFormatter(formatter)
 

@@ -8,6 +8,7 @@ from models import Base
 
 class UsersModel(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
+    login: Mapped[str] = mapped_column(nullable=False, unique=True)
     email: Mapped[str] = mapped_column(nullable=False,unique=True)
     password_hash: Mapped[str] = mapped_column(nullable=False)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True),nullable=False, default=lambda: datetime.now(timezone.utc))
