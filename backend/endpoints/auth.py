@@ -9,8 +9,6 @@ from backend.schemas.users import UserCreate, RefreshTokenSchema
 
 auth_router = APIRouter(tags=["auth"])
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/login")
-
 
 @auth_router.post("/auth/register")
 async def register(user: UserCreate, db: AsyncSession = Depends(get_session)):
@@ -28,3 +26,8 @@ async def login(user: OAuth2PasswordRequestForm = Depends(), db: AsyncSession = 
 async def refresh(token: RefreshTokenSchema, db: AsyncSession = Depends(get_session)):
     access_token = await check_refresh_token(token.refresh_token, db)
     return access_token
+
+# TODO Доделать забыл пароль по почте
+# @auth_router.post("/auth/forgot_pwd")
+# async def change_password():
+#     pass

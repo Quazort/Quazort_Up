@@ -1,11 +1,11 @@
 from typing import Optional
 
 from pydantic import EmailStr
-from sqlalchemy import select, or_
+from sqlalchemy import select, or_, update
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 
-from backend.core.exeptions import DataBaseError, UniquenessError
+from backend.core.exeptions import DataBaseError, UniquenessError, UserNotFound
 from backend.logger.logger import logger
 from backend.models.settings import RefreshTokenModel
 from backend.models.users import UsersModel
@@ -21,7 +21,13 @@ async def check_user(username: str, db: AsyncSession, email: Optional[EmailStr] 
 
         query = select(UsersModel).where(or_(*conditions))
         result = await db.execute(query)
-        return result.scalar_one_or_none()
+        user = result.scalar_one_or_none()
+        if user:
+            if user.deleted:
+                raise UserNotFound()
+            else:
+                return user
+        return user
     except Exception as e:
         logger.exception(f"check_user: {e}")
         raise
@@ -71,4 +77,15 @@ async def login(user, db: AsyncSession):
         }
     except Exception as e:
         logger.error(f"login: {e}")
+        raise
+
+
+async def delete(user: UsersModel, db: AsyncSession):
+    try:
+        query = await db.execute(update(UsersModel).where(UsersModel.id == user.id).values(deleted=True))
+    except SQLAlchemyError as e:
+        logger.error(f"delete: {e}")
+        raise DataBaseError()
+    except Exception as e:
+        logger.error(f"delete_me: {e}")
         raise

@@ -1,14 +1,15 @@
 import time
 from contextlib import asynccontextmanager
-from fastapi import Request
 
 import uvicorn
 from fastapi import FastAPI
+from fastapi import Request
+from fastapi.middleware.cors import CORSMiddleware
 
 from backend.db.engine import check_db
 from backend.endpoints.auth import auth_router
 from backend.endpoints.exercises import exercises_router
-from fastapi.middleware.cors import CORSMiddleware
+from backend.endpoints.users import users_routes
 from backend.logger.logger import logger
 
 
@@ -22,6 +23,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(title="Quazort_Up", lifespan=lifespan)
 app.include_router(exercises_router)
 app.include_router(auth_router)
+app.include_router(users_routes)
 
 app.add_middleware(
     CORSMiddleware,

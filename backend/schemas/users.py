@@ -37,3 +37,6 @@ class TokenData(BaseModel):
 
 class RefreshTokenSchema(BaseModel):
     refresh_token: str
+
+class DeleteUserSchema(BaseModel):
+    password: str
