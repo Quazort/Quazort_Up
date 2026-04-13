@@ -16,6 +16,8 @@ async def get_current_user(db: AsyncSession = Depends(get_session), access_token
 
     try:
         verify_token = verify_access_token(access_token)
+        if verify_token["type"] != "access":
+            raise HTTPException(status_code=401, detail="Access token required")
         query = await db.execute(select(UsersModel).where(UsersModel.id == verify_token["user_id"]))
         user = query.scalar_one_or_none()
         if not user:

@@ -12,14 +12,14 @@ from backend.models.users import UsersModel
 from backend.services.auth import hash_password, create_access_token, create_refresh_token, hash_refresh_token
 
 
-async def check_user(username: str, db: AsyncSession, email: Optional[EmailStr] = None) -> Optional[UsersModel] | None:
+async def check_user(username: str, db: AsyncSession, email: Optional[EmailStr] = None) -> Optional[UsersModel]:
     """Проверяет пользователя по username и, опционально, по email"""
     try:
         conditions = [UsersModel.username == username]
         if email:
             conditions.append(UsersModel.email == email)
 
-        query = select(UsersModel).where(or_(*conditions))
+        query = select(UsersModel).where(*conditions)
         result = await db.execute(query)
         user = result.scalar_one_or_none()
         if user:

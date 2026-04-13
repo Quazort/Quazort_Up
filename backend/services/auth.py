@@ -25,7 +25,8 @@ def create_access_token(user_id: int):
     expired_at = datetime.now(timezone.utc) + timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
     payload = {"user_id": user_id,
                "exp": expired_at.timestamp(),
-               "role": User_Type.USER.value}
+               "role": User_Type.USER.value,
+               "type": "access"}
     access_token = jwt.encode(payload=payload, key=settings.SECRET_KEY, algorithm="HS256")
     return access_token
 
@@ -56,7 +57,8 @@ def create_refresh_token(user_id: int):
     expired_at = datetime.now(timezone.utc) + timedelta(days=settings.REFRESH_TOKEN_EXPIRE_DAYS)
     payload = {"user_id": user_id,
                "exp": expired_at.timestamp(),
-               "role": User_Type.USER.value}
+               "role": User_Type.USER.value,
+               "type": "refresh"}
     refresh_token = jwt.encode(payload=payload, key=settings.SECRET_KEY, algorithm="HS256")
     return refresh_token
 

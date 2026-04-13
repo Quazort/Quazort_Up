@@ -33,16 +33,15 @@ async def create_user(db: AsyncSession, user: UserCreate):
     """Тут у нас должна быть регистрация, проверка юзера, потом создание"""
 
     try:
-        check_old_user = await check_user(user.username, db, user.email)
-        if check_old_user:
+        try:
+            check_old_user = await check_user(user.username, db, user.email)
+        except UserNotFound:
             raise HTTPException(status_code=409, detail="User already exists")
 
         user_secret = await create_new_user(user.username, user.password, user.email, db)
         return user_secret
     except HTTPException:
         raise
-    except UserNotFound:
-        raise HTTPException(status_code=404, detail="User not found")
     except DataBaseError:
         raise HTTPException(status_code=500, detail="Unexpected error")
     except UniquenessError:

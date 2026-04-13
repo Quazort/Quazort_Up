@@ -32,3 +32,5 @@ class UniquenessError(AppBaseError):
 class DataBaseError(AppBaseError):
     """Ошибка с бд"""
     pass
+class RockError(AppBaseError):
+    "Ошибка Rock"

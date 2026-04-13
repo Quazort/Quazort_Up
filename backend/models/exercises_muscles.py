@@ -9,6 +9,7 @@ class MusclesModel(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(nullable=False)
+    description: Mapped[str] = mapped_column(nullable=False)
 
     exercise_links: Mapped[list["ExercisesMusclesModel"]] = relationship(
         back_populates="muscle"

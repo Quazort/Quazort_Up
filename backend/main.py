@@ -9,6 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from backend.db.engine import check_db
 from backend.endpoints.auth import auth_router
 from backend.endpoints.exercises import exercises_router
+from backend.endpoints.rock import rock_routes
 from backend.endpoints.users import users_routes
 from backend.logger.logger import logger
 
@@ -24,6 +25,7 @@ app = FastAPI(title="Quazort_Up", lifespan=lifespan)
 app.include_router(exercises_router)
 app.include_router(auth_router)
 app.include_router(users_routes)
+app.include_router(rock_routes)
 
 app.add_middleware(
     CORSMiddleware,
