@@ -1,10 +1,13 @@
 import asyncio
 
+import redis.asyncio as redis
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncSession
 
 from backend.core.config import settings
 from backend.logger.logger import logger
+
+redis_db = redis.Redis.from_url(settings.REDIS_URL, decode_responses=True)
 
 engine = create_async_engine(settings.DATABASE_URL,
                              max_overflow=10,
@@ -12,6 +15,7 @@ engine = create_async_engine(settings.DATABASE_URL,
                              pool_pre_ping=True)
 
 new_session_maker = async_sessionmaker(engine)
+
 
 async def get_session():
     async with new_session_maker() as session:
@@ -32,5 +36,3 @@ async def check_db():
                 await conn.execute(text("select 1"))
     except Exception as e:
         logger.error(f"database error: {e}")
-
-
