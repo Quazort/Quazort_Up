@@ -82,7 +82,7 @@ async def login(user, db: AsyncSession):
 
 async def delete(user: UsersModel, db: AsyncSession):
     try:
-        query = await db.execute(update(UsersModel).where(UsersModel.id == user.id).values(deleted=True))
+        await db.execute(update(UsersModel).where(UsersModel.id == user.id).values(deleted=True))
     except SQLAlchemyError as e:
         logger.error(f"delete: {e}")
         raise DataBaseError()
